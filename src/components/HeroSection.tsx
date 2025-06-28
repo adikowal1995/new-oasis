@@ -1,8 +1,10 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowDown, PlayCircle } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+  
   return (
     <section id="home" className="pt-24 pb-16 bg-gradient-to-br from-brand-navy via-brand-navy to-brand-teal text-white overflow-hidden relative">
       <div className="absolute inset-0 opacity-20">
@@ -17,19 +19,16 @@ const HeroSection = () => {
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                Empowering Middle Eastern
-                <span className="text-brand-teal-light block">Businesses</span>
-                with Bespoke IT Solutions
+                {t('hero.title')}
               </h1>
               <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
-                Transform your digital landscape with our comprehensive software development, 
-                IT consultancy, and project management services tailored for the GCC and Levant markets.
+                {t('hero.subtitle')}
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-brand-teal hover:bg-brand-teal-light text-white px-8 py-4 text-lg">
-                Get Free Consultation
+                {t('hero.cta')}
               </Button>
               <Button 
                 size="lg" 
@@ -37,14 +36,14 @@ const HeroSection = () => {
                 className="border-white text-brand-navy bg-white hover:bg-white hover:text-brand-navy px-8 py-4 text-lg"
               >
                 <PlayCircle className="mr-2 h-5 w-5" />
-                View Our Work
+                {t('hero.learn-more')}
               </Button>
             </div>
 
             <div className="flex items-center space-x-8 pt-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-brand-teal-light">50+</div>
-                <div className="text-sm text-gray-300">Projects Delivered</div>
+                <div className="text-sm text-gray-300">{t('about.projects')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-brand-teal-light">15+</div>

@@ -2,69 +2,71 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, TrendingUp, Clock, Users } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const CaseStudiesSection = () => {
+  const { t } = useLanguage();
   const caseStudies = [{
-    title: "E-commerce Platform for Retail Chain",
-    client: "Major UAE Retailer",
-    description: "Complete digital transformation with multi-channel e-commerce platform serving 100K+ customers.",
+    title: t('case-studies.ecommerce.title'),
+    client: t('case-studies.ecommerce.client'),
+    description: t('case-studies.ecommerce.description'),
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    industry: "Retail",
+    industry: t('industries.retail'),
     results: [{
       icon: <TrendingUp className="h-4 w-4" />,
-      metric: "300% increase in online sales"
+      metric: t('case-studies.ecommerce.sales')
     }, {
       icon: <Users className="h-4 w-4" />,
-      metric: "50K+ new customers acquired"
+      metric: t('case-studies.ecommerce.customers')
     }, {
       icon: <Clock className="h-4 w-4" />,
-      metric: "6 months delivery time"
+      metric: t('case-studies.ecommerce.delivery')
     }],
     technologies: ["React", "Node.js", "AWS", "MongoDB"]
   }, {
-    title: "Banking Mobile Application",
-    client: "Regional Bank - Saudi Arabia",
-    description: "Secure mobile banking app with advanced features serving over 200K active users daily.",
+    title: t('case-studies.banking.title'),
+    client: t('case-studies.banking.client'),
+    description: t('case-studies.banking.description'),
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    industry: "FinTech",
+    industry: t('industries.fintech'),
     results: [{
       icon: <Users className="h-4 w-4" />,
-      metric: "200K+ daily active users"
+      metric: t('case-studies.banking.users')
     }, {
       icon: <TrendingUp className="h-4 w-4" />,
-      metric: "40% increase in digital transactions"
+      metric: t('case-studies.banking.transactions')
     }, {
       icon: <Clock className="h-4 w-4" />,
-      metric: "8 months development"
+      metric: t('case-studies.banking.development')
     }],
     technologies: ["Flutter", "Firebase", "Node.js", "PostgreSQL"]
   }, {
-    title: "Healthcare Management System",
-    client: "Medical Center Group - Qatar",
-    description: "Comprehensive patient management system streamlining operations across 5 medical facilities.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    industry: "Healthcare",
+    title: t('case-studies.healthcare.title'),
+    client: t('case-studies.healthcare.client'),
+    description: t('case-studies.healthcare.description'),
+    image: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    industry: t('industries.healthcare'),
     results: [{
       icon: <TrendingUp className="h-4 w-4" />,
-      metric: "60% faster patient processing"
+      metric: t('case-studies.healthcare.processing')
     }, {
       icon: <Users className="h-4 w-4" />,
-      metric: "10K+ patients managed monthly"
+      metric: t('case-studies.healthcare.patients')
     }, {
       icon: <Clock className="h-4 w-4" />,
-      metric: "4 months implementation"
+      metric: t('case-studies.healthcare.implementation')
     }],
     technologies: [".NET", "React", "Azure", "SQL Server"]
   }];
   return <section id="case-studies" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-brand-teal text-white">Case Studies</Badge>
+          <Badge className="mb-4 bg-brand-teal text-white">{t('case-studies.badge')}</Badge>
           <h2 className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6">
-            Success Stories
+            {t('case-studies.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover how we've helped businesses across the Middle East achieve 
-            their digital transformation goals with measurable results.
+            {t('case-studies.subtitle')}
           </p>
         </div>
 
@@ -103,7 +105,7 @@ const CaseStudiesSection = () => {
 
                 <Button variant="outline" className="w-full border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white">
                   <ExternalLink className="mr-2 h-4 w-4" />
-                  View Details
+                  {t('case-studies.view-details')}
                 </Button>
               </CardContent>
             </Card>)}

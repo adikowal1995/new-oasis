@@ -8,10 +8,11 @@ import { Badge } from "@/components/ui/badge";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const ContactSection = () => {
-  const {
-    toast
-  } = useToast();
+  const { t } = useLanguage();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -23,38 +24,29 @@ const ContactSection = () => {
   });
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Basic validation
     if (!formData.name || !formData.email || !formData.description) {
       toast({
-        title: "Error",
-        description: "Please fill in all required fields.",
+        title: t('contact.error'),
+        description: t('contact.required'),
         variant: "destructive",
       });
       return;
     }
-
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       toast({
-        title: "Error",
-        description: "Please enter a valid email address.",
+        title: t('contact.error'),
+        description: t('contact.invalidEmail'),
         variant: "destructive",
       });
       return;
     }
-
     try {
-      // Here you would typically send the form data to your backend
       console.log('Form submitted:', formData);
-      
       toast({
-        title: "Thank you for your inquiry!",
-        description: "We'll get back to you within 24 hours."
+        title: t('contact.success'),
+        description: t('contact.subtitle')
       });
-
-      // Reset form
       setFormData({
         name: "",
         company: "",
@@ -66,8 +58,8 @@ const ContactSection = () => {
       });
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Something went wrong. Please try again later.",
+        title: t('contact.error'),
+        description: t('contact.error'),
         variant: "destructive",
       });
     }
@@ -81,46 +73,42 @@ const ContactSection = () => {
   return <section id="contact" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-brand-teal text-white">Get In Touch</Badge>
+          <Badge className="mb-4 bg-brand-teal text-white">{t('contact.badge')}</Badge>
           <h2 className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6">
-            Ready to Start Your Project?
+            {t('contact.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Let's discuss your requirements and create a tailored solution 
-            that drives your business forward.
+            {t('contact.subtitle')}
           </p>
         </div>
-
         <div className="grid lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2">
             <Card className="bg-white shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl text-brand-navy">Request a Quote</CardTitle>
+                <CardTitle className="text-2xl text-brand-navy">{t('contact.badge')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <Label htmlFor="name">Full Name *</Label>
-                      <Input id="name" value={formData.name} onChange={e => handleInputChange('name', e.target.value)} placeholder="Your full name" required />
+                      <Label htmlFor="name">{t('contact.name')} *</Label>
+                      <Input id="name" value={formData.name} onChange={e => handleInputChange('name', e.target.value)} placeholder={t('contact.name')} required />
                     </div>
                     <div>
                       <Label htmlFor="company">Company</Label>
-                      <Input id="company" value={formData.company} onChange={e => handleInputChange('company', e.target.value)} placeholder="Your company name" />
+                      <Input id="company" value={formData.company} onChange={e => handleInputChange('company', e.target.value)} placeholder="Company" />
                     </div>
                   </div>
-
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <Label htmlFor="email">Email Address *</Label>
-                      <Input id="email" type="email" value={formData.email} onChange={e => handleInputChange('email', e.target.value)} placeholder="your.email@company.com" required />
+                      <Label htmlFor="email">{t('contact.email')} *</Label>
+                      <Input id="email" type="email" value={formData.email} onChange={e => handleInputChange('email', e.target.value)} placeholder={t('contact.email')} required />
                     </div>
                     <div>
-                      <Label htmlFor="phone">Phone Number</Label>
+                      <Label htmlFor="phone">Phone</Label>
                       <Input id="phone" value={formData.phone} onChange={e => handleInputChange('phone', e.target.value)} placeholder="+971 50 xxx xxxx" />
                     </div>
                   </div>
-
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="budget">Estimated Budget</Label>
@@ -151,20 +139,17 @@ const ContactSection = () => {
                       </Select>
                     </div>
                   </div>
-
                   <div>
-                    <Label htmlFor="description">Project Description *</Label>
-                    <Textarea id="description" value={formData.description} onChange={e => handleInputChange('description', e.target.value)} placeholder="Tell us about your project requirements, goals, and any specific needs..." rows={5} required />
+                    <Label htmlFor="description">{t('contact.message')} *</Label>
+                    <Textarea id="description" value={formData.description} onChange={e => handleInputChange('description', e.target.value)} placeholder={t('contact.message')} rows={5} required />
                   </div>
-
                   <Button type="submit" size="lg" className="w-full bg-brand-teal hover:bg-brand-teal-light text-white">
-                    Send Inquiry
+                    {t('contact.send')}
                   </Button>
                 </form>
               </CardContent>
             </Card>
           </div>
-
           <div className="space-y-8">
             <Card className="bg-white shadow-lg">
               <CardHeader>
@@ -185,7 +170,6 @@ const ContactSection = () => {
                     <div className="text-gray-600">hello@techflow.ae</div>
                   </div>
                 </div>
-                
                 <div className="flex items-start space-x-4">
                   <Clock className="h-6 w-6 text-brand-teal mt-1" />
                   <div>
@@ -198,8 +182,6 @@ const ContactSection = () => {
                 </div>
               </CardContent>
             </Card>
-
-            
           </div>
         </div>
       </div>

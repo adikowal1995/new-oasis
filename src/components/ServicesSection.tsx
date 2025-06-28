@@ -2,23 +2,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Code, Smartphone, Monitor, Users, Shield, Palette, Settings, CloudLightning } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const ServicesSection = () => {
+  const { t } = useLanguage();
   const services = [{
     icon: <Code className="h-8 w-8" />,
-    title: "Custom Software Development",
-    description: "Bespoke web, mobile, and desktop applications tailored to your business needs.",
+    title: t('services.development'),
+    description: t('services.development.desc'),
     technologies: ["React", "Node.js", "Flutter", ".NET"],
     color: "bg-blue-50 border-blue-200"
   }, {
     icon: <Users className="h-8 w-8" />,
-    title: "IT Project Management",
-    description: "Expert project delivery using Agile, Scrum, and hybrid methodologies.",
+    title: t('services.consulting'),
+    description: t('services.consulting.desc'),
     technologies: ["Agile", "Scrum", "Jira", "Azure DevOps"],
     color: "bg-green-50 border-green-200"
   }, {
     icon: <CloudLightning className="h-8 w-8" />,
-    title: "IT Consultancy & Support",
-    description: "Infrastructure optimization, cloud adoption, and comprehensive IT support.",
+    title: t('services.cloud'),
+    description: t('services.cloud.desc'),
     technologies: ["AWS", "Azure", "DevOps", "QA Testing"],
     color: "bg-purple-50 border-purple-200"
   }, {
@@ -29,8 +32,8 @@ const ServicesSection = () => {
     color: "bg-pink-50 border-pink-200"
   }, {
     icon: <Settings className="h-8 w-8" />,
-    title: "Maintenance & Support",
-    description: "Ongoing maintenance and 24/7 technical support for your systems.",
+    title: t('services.support'),
+    description: t('services.support.desc'),
     technologies: ["Monitoring", "Updates", "Security", "Performance"],
     color: "bg-orange-50 border-orange-200"
   }, {
@@ -43,13 +46,12 @@ const ServicesSection = () => {
   return <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-brand-teal text-white">Our Services</Badge>
+          <Badge className="mb-4 bg-brand-teal text-white">{t('services.badge')}</Badge>
           <h2 className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6">
-            Comprehensive IT Solutions
+            {t('services.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            From concept to deployment, we deliver end-to-end technology solutions 
-            that drive business growth across the Middle East region.
+            {t('services.subtitle')}
           </p>
         </div>
 
